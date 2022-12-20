@@ -1,16 +1,25 @@
+import 'package:devtastic_site/data/models/NpointModel.dart';
+import 'package:devtastic_site/data/provider/NPointProvider.dart';
+import 'package:devtastic_site/data/services/npoint.dart';
 import 'package:devtastic_site/presentation/NavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:seo_renderer/helpers/renderer_state.dart';
+import 'package:seo_renderer/helpers/robot_detector_vm.dart';
 
 import 'data/provider/TextGroup.dart';
 
 void main() {
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => TextGroupProvider()),
-    ],
-      child: const MyApp(),
+    RobotDetector(
+      debug: true,
+      child: MultiProvider(providers: [
+        ChangeNotifierProvider(create: (_) => TextGroupProvider()),
+        ChangeNotifierProvider(create: (_) => NPointProvider())
+      ],
+        child: const MyApp(),
+      ),
     )
   );
 }
@@ -43,6 +52,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Devtastic'),
+      navigatorObservers: [seoRouteObserver],
     );
   }
 }
@@ -58,7 +68,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   @override
+  void initState() {
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const NavBar();
+    context.read<NPointProvider>().getNPointData();
+    return context.watch<NPointProvider>().typewriterData.isEmpty ? Center(child: CircularProgressIndicator()) : NavBar();
   }
 }

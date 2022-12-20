@@ -1,9 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:devtastic_site/data/provider/NPointProvider.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
+import 'package:seo_renderer/renderers/image_renderer/image_renderer_vm.dart';
+import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
 
 import '../../data/provider/TextGroup.dart';
 
@@ -12,6 +16,7 @@ class TestimonialView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     var media = MediaQuery.of(context).size;
     var navGroupSize = context.watch<TextGroupProvider>().navItems;
     return LayoutBuilder(
@@ -33,19 +38,23 @@ class TestimonialView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                              "Testimonials",
-                              style: GoogleFonts.poppins(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
+                            TextRenderer(
+                              child: Text(
+                                "Testimonials",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             const SizedBox(height: 15),
-                            Text(
-                              "Let's see what previous clients say\nabout us.",
-                              style: GoogleFonts.poppins(
-                                fontSize: 18,
-                                color: Colors.black,
+                            TextRenderer(
+                              child: Text(
+                                "Let's see what previous clients say\nabout us.",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ],
@@ -65,50 +74,83 @@ class TestimonialView extends StatelessWidget {
                               SizedBox(
                                 height: 40,
                                 width: 40,
-                                child: Image.asset(
-                                    "assets/images/Quote.png"
+                                child: ImageRenderer(
+                                  alt: "Quote",
+                                  child: Image.asset(
+                                      "assets/images/Quote.png"
+                                  ),
                                 ),
                               ),
-                              SizedBox(
-                                child: AutoSizeText(
-                                  '"Working with them has been a great experience. We have worked for a couple of months and they didn\'t let us down. They\'re passionate on their works and all i can say that it\'s been a great ride."',
-                                  style: GoogleFonts.poppins(
-                                    color: Colors.white,
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                                  maxFontSize: 16,
-                                  minFontSize: 0,
-                                  //group: navGroupSize,
-
+                              CarouselSlider.builder(
+                                itemCount: context.read<NPointProvider>().testimonialsData.length,
+                                options: CarouselOptions(
+                                    height: 175,
+                                    autoPlay: true,
+                                    autoPlayInterval: const Duration(seconds: 3),
+                                    disableCenter: true,
+                                    viewportFraction: 1
                                 ),
-                              ),
-                              Row(
-                                children: [
-                                  const CircleAvatar(
-                                      radius: 30
-                                  ),
-                                  const SizedBox(width: 40),
-                                  Column(
+                                itemBuilder: (context, index, realIndex){
+                                  return Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        "Aziechaelle Cunanan",
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
+                                      SizedBox(
+                                        child: TextRenderer(
+                                          child: AutoSizeText(
+                                            context.read<NPointProvider>().testimonialsData[index].review,
+                                            style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                            maxFontSize: 16,
+                                            minFontSize: 0,
+                                            //group: navGroupSize,
+
+                                          ),
                                         ),
                                       ),
-                                      Text(
-                                        "Researcher of PharmaGo Mobile",
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 16,
-                                          color: Colors.white,
-                                        ),
+                                      Row(
+                                        children: [
+                                          CircleAvatar(
+                                              radius: 30,
+                                            child: ClipRRect(
+                                              borderRadius: const BorderRadius.all(Radius.circular(100)),
+                                              child: Image.network(
+                                                context.read<NPointProvider>().testimonialsData[index].picUrl
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 40),
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              TextRenderer(
+                                                child: Text(
+                                                  context.read<NPointProvider>().testimonialsData[index].name,
+                                                  style: GoogleFonts.poppins(
+                                                    fontSize: 18,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              TextRenderer(
+                                                child: Text(
+                                                  context.read<NPointProvider>().testimonialsData[index].position,
+                                                  style: GoogleFonts.poppins(
+                                                    fontSize: 16,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
                                       )
                                     ],
-                                  )
-                                ],
+                                  );
+                                },
                               )
                             ],
                           ),
@@ -127,19 +169,23 @@ class TestimonialView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Testimonials",
-                              style: GoogleFonts.poppins(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
+                            TextRenderer(
+                              child: Text(
+                                "Testimonials",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             const SizedBox(height: 15),
-                            Text(
-                              "Let's see what previous clients say\nabout us.",
-                              style: GoogleFonts.poppins(
-                                fontSize: 18,
-                                color: Colors.black,
+                            TextRenderer(
+                              child: Text(
+                                "Let's see what previous clients say\nabout us.",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ],
@@ -159,52 +205,86 @@ class TestimonialView extends StatelessWidget {
                               SizedBox(
                                 height: 60,
                                 width: 60,
-                                child: Image.asset(
-                                    "assets/images/Quote.png"
+                                child: ImageRenderer(
+                                  alt: "Quote",
+                                  child: Image.asset(
+                                      "assets/images/Quote.png"
+                                  ),
                                 ),
                               ),
-                              SizedBox(
-                                width: 550,
-                                height: 100,
-                                child: AutoSizeText(
-                                  '"Working with them has been a great experience. We have worked for a couple of months and they didn\'t let us down. They\'re passionate on their works and all i can say that it\'s been a great ride."',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 22,
-                                    color: Colors.white,
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                                  //group: navGroupSize,
+                              CarouselSlider.builder(
+                                itemCount: context.read<NPointProvider>().testimonialsData.length,
+                                options: CarouselOptions(
+                                  height: 280,
+                                  autoPlay: true,
+                                  autoPlayInterval: const Duration(seconds: 3),
+                                  disableCenter: true,
+                                  viewportFraction: 1
+                                ),
+                                itemBuilder: (context, index, pageIndex){
+                                  return Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: 550,
+                                          height: 140,
+                                          child: TextRenderer(
+                                            child: AutoSizeText(
+                                              context.read<NPointProvider>().testimonialsData[index].review,
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 22,
+                                                color: Colors.white,
+                                                fontStyle: FontStyle.italic,
+                                              ),
+                                              //group: navGroupSize,
 
-                                ),
+                                            ),
+                                          ),
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              width: 60,
+                                              height: 60,
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(30),
+                                                child: Image.network(
+                                                  context.read<NPointProvider>().testimonialsData[index].picUrl
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 40),
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                TextRenderer(
+                                                  child: Text(
+                                                    context.read<NPointProvider>().testimonialsData[index].name,
+                                                    style: GoogleFonts.poppins(
+                                                      fontSize: 20,
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                                TextRenderer(
+                                                  child: Text(
+                                                    context.read<NPointProvider>().testimonialsData[index].position,
+                                                    style: GoogleFonts.poppins(
+                                                      fontSize: 18,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                },
                               ),
-                              Row(
-                                children: [
-                                  const CircleAvatar(
-                                      radius: 30
-                                  ),
-                                  const SizedBox(width: 40),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Aziechaelle Cunanan",
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 20,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        "Researcher of PharmaGo Mobile",
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              )
                             ],
                           ),
                         ),

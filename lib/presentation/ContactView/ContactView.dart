@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/provider/TextGroup.dart';
 
@@ -20,9 +22,18 @@ class ContactView extends StatelessWidget {
   ];
 
   final cardInfo = [
-    "+63 927 987 2019\ndevtasticoffial@gmail.com",
+    "+63 927 987 2019\ndevtasticofficial@gmail.com",
     "Monday to Friday 10AM - 7PM"
   ];
+
+  void schedule() {
+    launchUrl(Uri.parse("https://cal.com/devtastic"));
+  }
+
+  void email(){
+    var email = Uri.parse('mailto:devtasticofficial@gmail.com?subject=Enter Subject Here&body=Enter Body Here');
+    launchUrl(email);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +54,13 @@ class ContactView extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Contact Us",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.bold
+                            TextRenderer(
+                              child: Text(
+                                "Contact Us",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.bold
+                                ),
                               ),
                             ),
                             SizedBox(height: 20),
@@ -57,7 +70,9 @@ class ContactView extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   ElevatedButton(
-                                    onPressed: (){},
+                                    onPressed: ()  {
+                                      email();
+                                    },
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor: Color(0xff414141),
                                         fixedSize: const Size(300, 70),
@@ -65,21 +80,27 @@ class ContactView extends StatelessWidget {
                                             borderRadius: BorderRadius.circular(10)
                                         )
                                     ),
+                                    child: TextRenderer(
+                                      child: Text(
+                                        "Send an Email",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  TextRenderer(
                                     child: Text(
-                                      "Send an Email",
+                                      "or",
                                       style: GoogleFonts.poppins(
                                         fontSize: 18,
                                       ),
                                     ),
                                   ),
-                                  Text(
-                                    "or",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                    ),
-                                  ),
                                   ElevatedButton(
-                                    onPressed: (){},
+                                    onPressed: (){
+                                      schedule();
+                                    },
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor: Color(0xff414141),
                                         fixedSize: const Size(300, 70),
@@ -87,10 +108,12 @@ class ContactView extends StatelessWidget {
                                             borderRadius: BorderRadius.circular(10)
                                         )
                                     ),
-                                    child: Text(
-                                      "Schedule a meeting",
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 18,
+                                    child: TextRenderer(
+                                      child: Text(
+                                        "Schedule a meeting",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 18,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -121,18 +144,22 @@ class ContactView extends StatelessWidget {
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        AutoSizeText(
-                                          cardTitle[index],
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.bold
+                                        TextRenderer(
+                                          child: AutoSizeText(
+                                            cardTitle[index],
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.bold
+                                            ),
+                                            group: navGroupSize,
                                           ),
-                                          group: navGroupSize,
                                         ),
-                                        Text(
-                                          cardInfo[index],
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 18,
+                                        TextRenderer(
+                                          child: Text(
+                                            cardInfo[index],
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 18,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -148,10 +175,12 @@ class ContactView extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: Center(
-                        child: Text(
-                          "Let's turn your ideas into reality",
-                          style: GoogleFonts.poppins(
-                            fontSize: 18,
+                        child: TextRenderer(
+                          child: Text(
+                            "Let's turn your ideas into reality",
+                            style: GoogleFonts.poppins(
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                       ),
@@ -161,130 +190,6 @@ class ContactView extends StatelessWidget {
               ),
             ],
           ) :
-          /*Column(
-            children: [
-              Expanded(
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(right: media.width * 0.1),
-                    child: Column(
-                        children: [
-                          Text(
-                            "Contact Us",
-                            style: GoogleFonts.poppins(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold
-                            ),
-                          ),
-                          SizedBox(height: 40),
-                          SizedBox(
-                            height: 200,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: (){},
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xff414141),
-                                      fixedSize: const Size(300, 70),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10)
-                                      )
-                                  ),
-                                  child: Text(
-                                    "Send an Email",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  "or",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                ElevatedButton(
-                                  onPressed: (){},
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xff414141),
-                                      fixedSize: const Size(300, 70),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10)
-                                      )
-                                  ),
-                                  child: Text(
-                                    "Schedule a meeting",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ]
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: SizedBox(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: media.width * 0.1),
-                    child: Column(
-                      children: List.generate(2, (index){
-                        return Card(
-                            elevation: 0,
-                            child: Container(
-                              margin: const EdgeInsets.only(bottom: 50),
-                              child: Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 30,
-                                    backgroundColor: const Color(0xff414141),
-                                    child: Icon(cardIcons[index], color: Colors.white,),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      AutoSizeText(
-                                        cardTitle[index],
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold
-                                        ),
-                                        group: navGroupSize,
-                                      ),
-                                      Text(
-                                        cardInfo[index],
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-
-                                ],
-                              ),
-                            )
-                        );
-                      }),
-                    ),
-                  ),
-                ),
-              ),
-              Center(
-                child: Text(
-                  "Let's turn your ideas into reality",
-                  style: GoogleFonts.poppins(
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-            ],
-          ) :*/
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -315,18 +220,22 @@ class ContactView extends StatelessWidget {
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            AutoSizeText(
-                                              cardTitle[index],
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 22,
-                                                  fontWeight: FontWeight.bold
+                                            TextRenderer(
+                                              child: AutoSizeText(
+                                                cardTitle[index],
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.bold
+                                                ),
+                                                group: navGroupSize,
                                               ),
-                                              group: navGroupSize,
                                             ),
-                                            Text(
-                                              cardInfo[index],
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 18,
+                                            TextRenderer(
+                                              child: Text(
+                                                cardInfo[index],
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 18,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -342,33 +251,37 @@ class ContactView extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: Container(
-                        child: Padding(
-                          padding: EdgeInsets.only(right: media.width * 0.1),
-                          child: Column(
-                              children: [
-                                Text(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: media.width * 0.1),
+                        child: Column(
+                            children: [
+                              TextRenderer(
+                                child: Text(
                                   "Contact Us",
                                   style: GoogleFonts.poppins(
                                       fontSize: 32,
                                       fontWeight: FontWeight.bold
                                   ),
                                 ),
-                                SizedBox(height: 40),
-                                SizedBox(
-                                  height: 200,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      ElevatedButton(
-                                        onPressed: (){},
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: Color(0xff414141),
-                                            fixedSize: const Size(300, 70),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10)
-                                            )
-                                        ),
+                              ),
+                              SizedBox(height: 40),
+                              SizedBox(
+                                height: 200,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        email();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color(0xff414141),
+                                          fixedSize: const Size(300, 70),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10)
+                                          )
+                                      ),
+                                      child: TextRenderer(
                                         child: Text(
                                           "Send an Email",
                                           style: GoogleFonts.poppins(
@@ -376,21 +289,27 @@ class ContactView extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-                                      Text(
+                                    ),
+                                    TextRenderer(
+                                      child: Text(
                                         "or",
                                         style: GoogleFonts.poppins(
                                           fontSize: 18,
                                         ),
                                       ),
-                                      ElevatedButton(
-                                        onPressed: (){},
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: Color(0xff414141),
-                                            fixedSize: const Size(300, 70),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10)
-                                            )
-                                        ),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: (){
+                                        schedule();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color(0xff414141),
+                                          fixedSize: const Size(300, 70),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10)
+                                          )
+                                      ),
+                                      child: TextRenderer(
                                         child: Text(
                                           "Schedule a meeting",
                                           style: GoogleFonts.poppins(
@@ -398,11 +317,11 @@ class ContactView extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                )
-                              ]
-                          ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ]
                         ),
                       ),
                     )
@@ -414,10 +333,12 @@ class ContactView extends StatelessWidget {
 
               Expanded(
                 child: Center(
-                  child: Text(
-                    "Let's turn your ideas into reality",
-                    style: GoogleFonts.poppins(
-                      fontSize: 18,
+                  child: TextRenderer(
+                    child: Text(
+                      "Let's turn your ideas into reality",
+                      style: GoogleFonts.poppins(
+                        fontSize: 18,
+                      ),
                     ),
                   ),
                 ),
