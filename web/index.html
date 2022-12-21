@@ -30,6 +30,12 @@
 
   <title>Devtastic|Software Solutions</title>
   <link rel="manifest" href="manifest.json">
+  <script>
+    const regExp = new RegExp("bot|google|baidu|bing|msn|teoma|slurp|yandex", "i");
+    if (regExp.test(navigator.userAgent)) {
+      window.flutterWebRenderer = "html";
+    }
+  </script>
 
   <script>
     // The value below is injected by flutter build, do not touch.

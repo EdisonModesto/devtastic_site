@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:seo_renderer/renderers/image_renderer/image_renderer_vm.dart';
+import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
 import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
 
 import '../../data/provider/TextGroup.dart';
@@ -39,6 +40,7 @@ class TestimonialView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             TextRenderer(
+                              style: TextRendererStyle.header1,
                               child: Text(
                                 "Testimonials",
                                 style: GoogleFonts.poppins(
@@ -49,6 +51,7 @@ class TestimonialView extends StatelessWidget {
                             ),
                             const SizedBox(height: 15),
                             TextRenderer(
+                              style: TextRendererStyle.paragraph,
                               child: Text(
                                 "Let's see what previous clients say\nabout us.",
                                 style: GoogleFonts.poppins(
@@ -97,6 +100,7 @@ class TestimonialView extends StatelessWidget {
                                     children: [
                                       SizedBox(
                                         child: TextRenderer(
+                                          style: TextRendererStyle.paragraph,
                                           child: AutoSizeText(
                                             context.read<NPointProvider>().testimonialsData[index].review,
                                             style: GoogleFonts.poppins(
@@ -105,7 +109,7 @@ class TestimonialView extends StatelessWidget {
                                             ),
                                             maxFontSize: 16,
                                             minFontSize: 0,
-                                            //group: navGroupSize,
+                                            group: navGroupSize,
 
                                           ),
                                         ),
@@ -126,6 +130,7 @@ class TestimonialView extends StatelessWidget {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               TextRenderer(
+                                                style: TextRendererStyle.paragraph,
                                                 child: Text(
                                                   context.read<NPointProvider>().testimonialsData[index].name,
                                                   style: GoogleFonts.poppins(
@@ -136,6 +141,7 @@ class TestimonialView extends StatelessWidget {
                                                 ),
                                               ),
                                               TextRenderer(
+                                                style: TextRendererStyle.paragraph,
                                                 child: Text(
                                                   context.read<NPointProvider>().testimonialsData[index].position,
                                                   style: GoogleFonts.poppins(
@@ -170,6 +176,7 @@ class TestimonialView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextRenderer(
+                              style: TextRendererStyle.header1,
                               child: Text(
                                 "Testimonials",
                                 style: GoogleFonts.poppins(
@@ -180,6 +187,7 @@ class TestimonialView extends StatelessWidget {
                             ),
                             const SizedBox(height: 15),
                             TextRenderer(
+                              style: TextRendererStyle.paragraph,
                               child: Text(
                                 "Let's see what previous clients say\nabout us.",
                                 style: GoogleFonts.poppins(
@@ -230,10 +238,11 @@ class TestimonialView extends StatelessWidget {
                                           width: 550,
                                           height: 140,
                                           child: TextRenderer(
-                                            child: AutoSizeText(
+                                            style: TextRendererStyle.paragraph,
+                                            child: Text(
                                               context.read<NPointProvider>().testimonialsData[index].review,
                                               style: GoogleFonts.poppins(
-                                                fontSize: 22,
+                                                fontSize: 20,
                                                 color: Colors.white,
                                                 fontStyle: FontStyle.italic,
                                               ),
@@ -259,6 +268,7 @@ class TestimonialView extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 TextRenderer(
+                                                  style: TextRendererStyle.paragraph,
                                                   child: Text(
                                                     context.read<NPointProvider>().testimonialsData[index].name,
                                                     style: GoogleFonts.poppins(
@@ -269,6 +279,7 @@ class TestimonialView extends StatelessWidget {
                                                   ),
                                                 ),
                                                 TextRenderer(
+                                                  style: TextRendererStyle.paragraph,
                                                   child: Text(
                                                     context.read<NPointProvider>().testimonialsData[index].position,
                                                     style: GoogleFonts.poppins(

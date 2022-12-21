@@ -76,6 +76,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     context.read<NPointProvider>().getNPointData();
-    return context.watch<NPointProvider>().typewriterData.isEmpty ? Center(child: CircularProgressIndicator()) : NavBar();
+    return context.watch<NPointProvider>().typewriterData.isEmpty ?
+    Center(
+        child: CircularProgressIndicator()
+    ) :
+    NavBar();
   }
 }

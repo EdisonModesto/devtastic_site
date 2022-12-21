@@ -3,6 +3,7 @@ import 'package:devtastic_site/data/provider/NPointProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
 import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
 
 class AboutView extends StatelessWidget {
@@ -25,6 +26,7 @@ class AboutView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextRenderer(
+                      style: TextRendererStyle.header1,
                       child: Text(
                         "What is Devtastic?",
                         style: GoogleFonts.poppins(
@@ -37,6 +39,7 @@ class AboutView extends StatelessWidget {
                     SizedBox(
                       width: 900,
                       child: TextRenderer(
+                        style: TextRendererStyle.paragraph,
                         child: Text(
                           context.watch<NPointProvider>().aboutData,
                           style: GoogleFonts.poppins(
@@ -64,6 +67,7 @@ class AboutView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextRenderer(
+                        style: TextRendererStyle.header1,
                         child: Text(
                           "Vision",
                           style: GoogleFonts.poppins(
@@ -76,7 +80,8 @@ class AboutView extends StatelessWidget {
                       SizedBox(
                         width: 900,
                         child: TextRenderer(
-                          child: AutoSizeText(
+                          style: TextRendererStyle.paragraph,
+                          child: Text(
                             context.watch<NPointProvider>().visionData,
                             style: GoogleFonts.poppins(
                               fontSize: 18,

@@ -7,6 +7,8 @@ import 'package:devtastic_site/presentation/TestimonialVew/TestimonialView.dart'
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
+import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
 
 import '../data/provider/TextGroup.dart';
 
@@ -26,12 +28,20 @@ class _NavBarState extends State<NavBar> {
     NavModel(text: "Testimonials", page: 2),
     NavModel(text: "Contact Us", page: 3),
   ];
+  var page = 0;
+  var isUp = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
 
     var media = MediaQuery.of(context).size;
     var navGroupSize = context.watch<TextGroupProvider>().navItems;
+
 
     return Scaffold(
       body: LayoutBuilder(
@@ -47,19 +57,39 @@ class _NavBarState extends State<NavBar> {
                     children: [
                       Expanded(
                         flex: 25,
-                        child: Text(
-                            "Devtastic",
-                            style: GoogleFonts.poppins(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold
-                            )
+                        child: TextRenderer(
+                          style: TextRendererStyle.header1,
+                          child: Text(
+                              "Devtastic",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                color: Colors.black
+                              )
+                          ),
                         ),
                       ),
                       constraints.maxWidth <= 800 ?
                           IconButton(
-                            onPressed: (){},
+                            onPressed: (){
+                              if(page == 0){
+                                setState(() {
+                                  isUp = false;
+                                });
+                              } else if (page == 3){
+                                setState(() {
+                                  isUp = true;
+                                });
+                              }
+                              if(isUp){
+                                _pageController.animateToPage(navItems[(_pageController.page as int )- 1].page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+                              } else {
+                                _pageController.animateToPage(navItems[(_pageController.page as int )+ 1].page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+                              }
+                            },
                             icon: Icon(
-                              Icons.menu,
+                              isUp ?
+                              Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
                               size: 35,
                             ),
                           ) :
@@ -68,20 +98,24 @@ class _NavBarState extends State<NavBar> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: List.generate(navItems.length, (index){
+                              page = index;
                               return Expanded(
                                 child: TextButton(
                                   onPressed: (){
                                     _pageController.animateToPage(navItems[index].page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut); //.animateTo(navItems[index].page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
                                   },
-                                  child: AutoSizeText(
-                                    navItems[index].text,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 22,
-                                      color: Colors.black,
+                                  child: TextRenderer(
+                                    style: TextRendererStyle.header2,
+                                    child: Text(
+                                      navItems[index].text,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 22,
+                                        color: Colors.black,
+                                      ),
+                                      //minFontSize: 0,
+                                      maxLines: 1,
+                                    //  group: navGroupSize,
                                     ),
-                                    minFontSize: 0,
-                                    maxLines: 1,
-                                    group: navGroupSize,
                                   ),
                                 ),
                               );
@@ -94,8 +128,24 @@ class _NavBarState extends State<NavBar> {
               ),
               Expanded(
                 child: PageView(
+
                   controller: _pageController,
                   scrollDirection: Axis.vertical,
+                  onPageChanged: (index){
+                    setState(() {
+                      page = index;
+                      if(page == 0){
+                        setState(() {
+                          isUp = false;
+                        });
+                      } else if (page == 3){
+                        setState(() {
+                          isUp = true;
+                        });
+                      }
+                    });
+                    print(page);
+                  },
                   children: [
                     HomeView(),
                     const AboutView(),
