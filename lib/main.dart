@@ -5,22 +5,18 @@ import 'package:devtastic_site/presentation/NavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:seo_renderer/helpers/renderer_state.dart';
-import 'package:seo_renderer/helpers/robot_detector_vm.dart';
+
 
 import 'data/provider/TextGroup.dart';
 
 void main() {
   runApp(
-    RobotDetector(
-      debug: true,
-      child: MultiProvider(providers: [
-        ChangeNotifierProvider(create: (_) => TextGroupProvider()),
-        ChangeNotifierProvider(create: (_) => NPointProvider())
-      ],
-        child: const MyApp(),
-      ),
-    )
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => TextGroupProvider()),
+      ChangeNotifierProvider(create: (_) => NPointProvider())
+    ],
+      child: const MyApp(),
+    ),
   );
 }
 
@@ -47,12 +43,11 @@ class MyApp extends StatelessWidget {
             background: Container(color: Color(0xFFF5F5F5)),
         );
       },
-      title: 'Devtastic',
+      title: 'Devtastic | Software Solutions',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Devtastic'),
-      navigatorObservers: [seoRouteObserver],
+      home: const MyHomePage(title: 'Devtastic | Software Solutions'),
     );
   }
 }

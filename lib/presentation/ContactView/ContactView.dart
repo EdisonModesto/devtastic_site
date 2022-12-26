@@ -3,9 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:seo_renderer/renderers/link_renderer/link_renderer_vm.dart';
-import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
-import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/provider/TextGroup.dart';
@@ -56,14 +53,11 @@ class ContactView extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            TextRenderer(
-                              style: TextRendererStyle.header1,
-                              child: Text(
-                                "Contact Us",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.bold
-                                ),
+                            Text(
+                              "Contact Us",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold
                               ),
                             ),
                             SizedBox(height: 20),
@@ -72,62 +66,45 @@ class ContactView extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  LinkRenderer(
-                                    href: "mailto:devtasticofficial@gmail.com?subject=Enter Subject Here&body=Enter Body Here",
-                                    text: "Send an Email",
-                                    child: ElevatedButton(
-                                      onPressed: ()  {
-                                        email();
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: Color(0xff414141),
-                                          fixedSize: const Size(300, 70),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10)
-                                          )
-                                      ),
-                                      child: TextRenderer(
-                                        style: TextRendererStyle.header2,
-                                        child: Text(
-                                          "Send an Email",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ),
+                                  ElevatedButton(
+                                    onPressed: ()  {
+                                      email();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Color(0xff414141),
+                                        fixedSize: const Size(300, 70),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10)
+                                        )
                                     ),
-                                  ),
-                                  TextRenderer(
-                                    style: TextRendererStyle.paragraph,
                                     child: Text(
-                                      "or",
+                                      "Send an Email",
                                       style: GoogleFonts.poppins(
                                         fontSize: 18,
                                       ),
                                     ),
                                   ),
-                                  LinkRenderer(
-                                    href: "https://cal.com/devtastic",
-                                    text: "Schedule a meeting",
-                                    child: ElevatedButton(
-                                      onPressed: (){
-                                        schedule();
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: Color(0xff414141),
-                                          fixedSize: const Size(300, 70),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10)
-                                          )
-                                      ),
-                                      child: TextRenderer(
-                                        style: TextRendererStyle.paragraph,
-                                        child: Text(
-                                          "Schedule a meeting",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 18,
-                                          ),
-                                        ),
+                                  Text(
+                                    "or",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: (){
+                                      schedule();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Color(0xff414141),
+                                        fixedSize: const Size(300, 70),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10)
+                                        )
+                                    ),
+                                    child: Text(
+                                      "Schedule a meeting",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18,
                                       ),
                                     ),
                                   ),
@@ -158,24 +135,18 @@ class ContactView extends StatelessWidget {
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        TextRenderer(
-                                          style: TextRendererStyle.header2,
-                                          child: Text(
-                                            cardTitle[index],
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.bold
-                                            ),
-                                            //group: navGroupSize,
+                                        Text(
+                                          cardTitle[index],
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold
                                           ),
+                                          //group: navGroupSize,
                                         ),
-                                        TextRenderer(
-                                          style: TextRendererStyle.paragraph,
-                                          child: Text(
-                                            cardInfo[index],
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 18,
-                                            ),
+                                        Text(
+                                          cardInfo[index],
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 18,
                                           ),
                                         ),
                                       ],
@@ -191,13 +162,10 @@ class ContactView extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: Center(
-                        child: TextRenderer(
-                          style: TextRendererStyle.paragraph,
-                          child: Text(
-                            "Let's turn your ideas into reality",
-                            style: GoogleFonts.poppins(
-                              fontSize: 18,
-                            ),
+                        child: Text(
+                          "Let's turn your ideas into reality",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
                           ),
                         ),
                       ),
@@ -237,24 +205,18 @@ class ContactView extends StatelessWidget {
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            TextRenderer(
-                                              style: TextRendererStyle.header2,
-                                              child: Text(
-                                                cardTitle[index],
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 22,
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                               // group: navGroupSize,
+                                            Text(
+                                              cardTitle[index],
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold
                                               ),
+                                             // group: navGroupSize,
                                             ),
-                                            TextRenderer(
-                                              style: TextRendererStyle.paragraph,
-                                              child: Text(
-                                                cardInfo[index],
-                                                style: GoogleFonts.poppins(
-                                                  fontSize: 18,
-                                                ),
+                                            Text(
+                                              cardInfo[index],
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 18,
                                               ),
                                             ),
                                           ],
@@ -274,14 +236,11 @@ class ContactView extends StatelessWidget {
                         padding: EdgeInsets.only(right: media.width * 0.1),
                         child: Column(
                             children: [
-                              TextRenderer(
-                                style: TextRendererStyle.header2,
-                                child: Text(
-                                  "Contact Us",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 32,
-                                      fontWeight: FontWeight.bold
-                                  ),
+                              Text(
+                                "Contact Us",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.bold
                                 ),
                               ),
                               SizedBox(height: 40),
@@ -290,62 +249,45 @@ class ContactView extends StatelessWidget {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    LinkRenderer(
-                                      href: "mailto:devtasticofficial@gmail.com?subject=Enter Subject Here&body=Enter Body Here",
-                                      text: "Send an Email",
-                                      child: ElevatedButton(
-                                        onPressed: () async {
-                                          email();
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: Color(0xff414141),
-                                            fixedSize: const Size(300, 70),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10)
-                                            )
-                                        ),
-                                        child: TextRenderer(
-                                          style: TextRendererStyle.paragraph,
-                                          child: Text(
-                                            "Send an Email",
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                        ),
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        email();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color(0xff414141),
+                                          fixedSize: const Size(300, 70),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10)
+                                          )
                                       ),
-                                    ),
-                                    TextRenderer(
-                                      style: TextRendererStyle.paragraph,
                                       child: Text(
-                                        "or",
+                                        "Send an Email",
                                         style: GoogleFonts.poppins(
                                           fontSize: 18,
                                         ),
                                       ),
                                     ),
-                                    LinkRenderer(
-                                      href: "https://cal.com/devtastic",
-                                      text: "Schedule a meeting",
-                                      child: ElevatedButton(
-                                        onPressed: (){
-                                          schedule();
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: Color(0xff414141),
-                                            fixedSize: const Size(300, 70),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10)
-                                            )
-                                        ),
-                                        child: TextRenderer(
-                                          style: TextRendererStyle.paragraph,
-                                          child: Text(
-                                            "Schedule a meeting",
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 18,
-                                            ),
-                                          ),
+                                    Text(
+                                      "or",
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: (){
+                                        schedule();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color(0xff414141),
+                                          fixedSize: const Size(300, 70),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10)
+                                          )
+                                      ),
+                                      child: Text(
+                                        "Schedule a meeting",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 18,
                                         ),
                                       ),
                                     ),
@@ -364,13 +306,10 @@ class ContactView extends StatelessWidget {
 
               Expanded(
                 child: Center(
-                  child: TextRenderer(
-                    style: TextRendererStyle.paragraph,
-                    child: Text(
-                      "Let's turn your ideas into reality",
-                      style: GoogleFonts.poppins(
-                        fontSize: 18,
-                      ),
+                  child: Text(
+                    "Let's turn your ideas into reality",
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
                     ),
                   ),
                 ),

@@ -1,13 +1,9 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:devtastic_site/data/provider/NPointProvider.dart';
 import 'package:devtastic_site/widgets/Typewriter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
-import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
-
 import '../../data/models/CardModel.dart';
 import '../../data/provider/TextGroup.dart';
 
@@ -38,11 +34,8 @@ class HomeView extends StatelessWidget {
                   child: Center(
                     child: Transform.translate(
                       offset: const Offset(0, -75),
-                      child: TextRenderer(
-                        style: TextRendererStyle.header1,
-                        child: Typewriter(
-                            strings: context.watch<NPointProvider>().typewriterData as List<String>,
-                        ),
+                      child: Typewriter(
+                          strings: context.watch<NPointProvider>().typewriterData as List<String>,
                       ),
                     ),
                   ),
@@ -81,28 +74,22 @@ class HomeView extends StatelessWidget {
                                           backgroundColor: const Color(0xff414141),
                                           child: cardData[index].icon
                                       ),
-                                      TextRenderer(
-                                        style: TextRendererStyle.header2,
-                                        child: Text(
-                                          cardData[index].title,
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          //group: navGroupSize,
+                                      Text(
+                                        cardData[index].title,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
                                         ),
+                                        //group: navGroupSize,
                                       ),
-                                      TextRenderer(
-                                        style: TextRendererStyle.paragraph,
-                                        child: Text(
-                                          cardData[index].description,
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 18,
-                                          ),
-                                          maxLines: 3,
-                                        //  minFontSize: 0,
+                                      Text(
+                                        cardData[index].description,
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 18,
                                         ),
+                                        maxLines: 3,
+                                      //  minFontSize: 0,
                                       ),
                                     ],
                                   ),
@@ -137,23 +124,19 @@ class HomeView extends StatelessWidget {
                                         backgroundColor: const Color(0xff414141),
                                         child: cardData[index].icon
                                     ),
-                                    TextRenderer(
-                                      child: Text(
-                                        cardData[index].title,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      //  group: navGroupSize,
+                                    Text(
+                                      cardData[index].title,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
                                       ),
+                                    //  group: navGroupSize,
                                     ),
-                                    TextRenderer(
-                                      child: Text(
-                                        cardData[index].description,
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                        ),
+                                    Text(
+                                      cardData[index].description,
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18,
                                       ),
                                     ),
                                   ],

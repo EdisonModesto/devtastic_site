@@ -7,8 +7,6 @@ import 'package:devtastic_site/presentation/TestimonialVew/TestimonialView.dart'
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
-import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
 
 import '../data/provider/TextGroup.dart';
 
@@ -57,16 +55,13 @@ class _NavBarState extends State<NavBar> {
                     children: [
                       Expanded(
                         flex: 25,
-                        child: TextRenderer(
-                          style: TextRendererStyle.header1,
-                          child: Text(
-                              "Devtastic",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.bold,
-                                color: Colors.black
-                              )
-                          ),
+                        child: Text(
+                            "Devtastic",
+                            style: GoogleFonts.poppins(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                              color: Colors.black
+                            )
                         ),
                       ),
                       constraints.maxWidth <= 800 ?
@@ -104,18 +99,15 @@ class _NavBarState extends State<NavBar> {
                                   onPressed: (){
                                     _pageController.animateToPage(navItems[index].page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut); //.animateTo(navItems[index].page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
                                   },
-                                  child: TextRenderer(
-                                    style: TextRendererStyle.header2,
-                                    child: Text(
-                                      navItems[index].text,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 22,
-                                        color: Colors.black,
-                                      ),
-                                      //minFontSize: 0,
-                                      maxLines: 1,
-                                    //  group: navGroupSize,
+                                  child: Text(
+                                    navItems[index].text,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 22,
+                                      color: Colors.black,
                                     ),
+                                    //minFontSize: 0,
+                                    maxLines: 1,
+                                  //  group: navGroupSize,
                                   ),
                                 ),
                               );

@@ -3,8 +3,6 @@ import 'package:devtastic_site/data/provider/NPointProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
-import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
 
 class AboutView extends StatelessWidget {
   const AboutView({Key? key}) : super(key: key);
@@ -25,27 +23,21 @@ class AboutView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextRenderer(
-                      style: TextRendererStyle.header1,
-                      child: Text(
-                        "What is Devtastic?",
-                        style: GoogleFonts.poppins(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold
-                        ),
+                    Text(
+                      "What is Devtastic?",
+                      style: GoogleFonts.poppins(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold
                       ),
                     ),
                     const SizedBox(height: 15),
                     SizedBox(
                       width: 900,
-                      child: TextRenderer(
-                        style: TextRendererStyle.paragraph,
-                        child: Text(
-                          context.watch<NPointProvider>().aboutData,
-                          style: GoogleFonts.poppins(
-                            fontSize: 18,
-                            color: Colors.black,
-                          ),
+                      child: Text(
+                        context.watch<NPointProvider>().aboutData,
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          color: Colors.black,
                         ),
                       ),
                     )
@@ -66,27 +58,21 @@ class AboutView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextRenderer(
-                        style: TextRendererStyle.header1,
-                        child: Text(
-                          "Vision",
-                          style: GoogleFonts.poppins(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                      Text(
+                        "Vision",
+                        style: GoogleFonts.poppins(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(
                         width: 900,
-                        child: TextRenderer(
-                          style: TextRendererStyle.paragraph,
-                          child: Text(
-                            context.watch<NPointProvider>().visionData,
-                            style: GoogleFonts.poppins(
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
+                        child: Text(
+                          context.watch<NPointProvider>().visionData,
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            color: Colors.white,
                           ),
                         ),
                       )

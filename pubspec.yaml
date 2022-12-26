@@ -48,7 +48,7 @@ dependencies:
   ionicons: ^0.2.1
   auto_size_text: ^3.0.0
   responsive_framework: ^0.2.0
-  seo_renderer: ^0.6.0
+  #seo_renderer: ^0.6.0
   http: ^0.13.5
   carousel_slider: ^4.2.1
   url_launcher: ^6.1.7
