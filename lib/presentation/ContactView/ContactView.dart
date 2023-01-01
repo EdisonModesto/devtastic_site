@@ -21,7 +21,7 @@ class ContactView extends StatelessWidget {
   ];
 
   final cardInfo = [
-    "+63 927 987 2019\ndevtasticofficial@gmail.com",
+    "+63 927 987 2019\ncontact@devtastic.tech",
     "Monday to Friday 10AM - 7PM"
   ];
 
@@ -30,7 +30,7 @@ class ContactView extends StatelessWidget {
   }
 
   void email(){
-    var email = Uri.parse('mailto:devtasticofficial@gmail.com?subject=Enter Subject Here&body=Enter Body Here');
+    var email = Uri.parse('mailto:contact@devtastic.tech?subject=Enter Subject Here&body=Enter Body Here');
     launchUrl(email);
   }
 
