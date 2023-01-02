@@ -52,6 +52,8 @@ dependencies:
   http: ^0.13.5
   carousel_slider: ^4.2.1
   url_launcher: ^6.1.7
+  youtube_player_iframe: ^4.0.1
+  video_player: ^2.4.10
 
 
 dev_dependencies:
