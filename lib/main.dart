@@ -1,5 +1,6 @@
 import 'package:devtastic_site/data/models/NpointModel.dart';
 import 'package:devtastic_site/data/provider/NPointProvider.dart';
+import 'package:devtastic_site/data/provider/pageProvider.dart';
 import 'package:devtastic_site/data/services/npoint.dart';
 import 'package:devtastic_site/presentation/NavBar.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ void main() {
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => TextGroupProvider()),
-      ChangeNotifierProvider(create: (_) => NPointProvider())
+      ChangeNotifierProvider(create: (_) => NPointProvider()),
+      ChangeNotifierProvider(create: (_)=>PageProvider())
     ],
       child: const MyApp(),
     ),

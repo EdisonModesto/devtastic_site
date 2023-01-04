@@ -1,9 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:devtastic_site/data/models/NavModels.dart';
+import 'package:devtastic_site/data/provider/pageProvider.dart';
 import 'package:devtastic_site/presentation/AboutView/AboutView.dart';
 import 'package:devtastic_site/presentation/ContactView/ContactView.dart';
 import 'package:devtastic_site/presentation/HomeView/HomeView.dart';
+import 'package:devtastic_site/presentation/ServicesView/services_view.dart';
 import 'package:devtastic_site/presentation/TestimonialVew/TestimonialView.dart';
+import 'package:devtastic_site/presentation/featureView/feature_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -18,13 +21,13 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  PageController _pageController = PageController();
-
   List<NavModel> navItems = [
     NavModel(text: "Home", page: 0),
-    NavModel(text: "About Us", page: 1),
-    NavModel(text: "Testimonials", page: 2),
-    NavModel(text: "Contact Us", page: 3),
+    NavModel(text: "Why Us", page: 1),
+    NavModel(text: "About Us", page: 2),
+    NavModel(text: "Services", page: 3),
+    NavModel(text: "Testimonials", page: 4),
+    NavModel(text: "Contact Us", page: 5),
   ];
   var page = 0;
   var isUp = false;
@@ -71,15 +74,15 @@ class _NavBarState extends State<NavBar> {
                                 setState(() {
                                   isUp = false;
                                 });
-                              } else if (page == 3){
+                              } else if (page == 5){
                                 setState(() {
                                   isUp = true;
                                 });
                               }
                               if(isUp){
-                                _pageController.animateToPage(navItems[(_pageController.page as int )- 1].page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+                                context.read<PageProvider>().setPage(page - 1);
                               } else {
-                                _pageController.animateToPage(navItems[(_pageController.page as int )+ 1].page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+                                context.read<PageProvider>().setPage(page + 1);
                               }
                             },
                             icon: Icon(
@@ -97,13 +100,13 @@ class _NavBarState extends State<NavBar> {
                               return Expanded(
                                 child: TextButton(
                                   onPressed: (){
-                                    _pageController.animateToPage(navItems[index].page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut); //.animateTo(navItems[index].page, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+                                    context.read<PageProvider>().setPage(navItems[index].page);
                                   },
                                   child: Text(
                                     navItems[index].text,
                                     style: GoogleFonts.poppins(
                                       fontSize: 22,
-                                      color: Colors.black,
+                                      color: Color(0xff414141),
                                     ),
                                     //minFontSize: 0,
                                     maxLines: 1,
@@ -120,8 +123,8 @@ class _NavBarState extends State<NavBar> {
               ),
               Expanded(
                 child: PageView(
-
-                  controller: _pageController,
+                  controller: context.watch<PageProvider>().pageController,
+                  physics: context.watch<PageProvider>().isPaused ? NeverScrollableScrollPhysics() : AlwaysScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   onPageChanged: (index){
                     setState(() {
@@ -130,7 +133,7 @@ class _NavBarState extends State<NavBar> {
                         setState(() {
                           isUp = false;
                         });
-                      } else if (page == 3){
+                      } else if (page == 5){
                         setState(() {
                           isUp = true;
                         });
@@ -140,7 +143,9 @@ class _NavBarState extends State<NavBar> {
                   },
                   children: [
                     HomeView(),
+                    FeatureView(),
                     const AboutView(),
+                    ServicesView(),
                     const TestimonialView(),
                     ContactView()
                   ],

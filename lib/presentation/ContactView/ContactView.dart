@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:devtastic_site/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -95,7 +96,7 @@ class ContactView extends StatelessWidget {
                                       schedule();
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: Color(0xff414141),
+                                        backgroundColor: ColorsUI().accent,
                                         fixedSize: const Size(300, 70),
                                         shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(10)
@@ -278,7 +279,7 @@ class ContactView extends StatelessWidget {
                                         schedule();
                                       },
                                       style: ElevatedButton.styleFrom(
-                                          backgroundColor: Color(0xff414141),
+                                          backgroundColor: ColorsUI().accent,
                                           fixedSize: const Size(300, 70),
                                           shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(10)

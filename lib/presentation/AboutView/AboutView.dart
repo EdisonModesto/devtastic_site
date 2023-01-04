@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../constants/colors.dart';
+
 class AboutView extends StatelessWidget {
   const AboutView({Key? key}) : super(key: key);
 
@@ -23,14 +25,30 @@ class AboutView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "What is Devtastic?",
-                      style: GoogleFonts.poppins(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                          text: "What",
+                          style: GoogleFonts.poppins(
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                              color: ColorsUI().accent
+                          ),
+                          children: [
+                            TextSpan(
+                              text: " is Devtastic?",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black
+                              ),
+                            ),
+                          ]
                       ),
                     ),
                     const SizedBox(height: 15),
+
+
                     SizedBox(
                       width: 900,
                       child: Text(

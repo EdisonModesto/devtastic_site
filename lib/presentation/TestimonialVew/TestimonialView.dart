@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:devtastic_site/constants/colors.dart';
 import 'package:devtastic_site/data/provider/NPointProvider.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -39,6 +40,7 @@ class TestimonialView extends StatelessWidget {
                               style: GoogleFonts.poppins(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
+                                color: ColorsUI().accent
                               ),
                             ),
                             const SizedBox(height: 15),
@@ -157,6 +159,7 @@ class TestimonialView extends StatelessWidget {
                               style: GoogleFonts.poppins(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
+                                color: ColorsUI().accent
                               ),
                             ),
                             const SizedBox(height: 15),
