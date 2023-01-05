@@ -3,6 +3,7 @@ import 'package:devtastic_site/data/models/NavModels.dart';
 import 'package:devtastic_site/data/provider/pageProvider.dart';
 import 'package:devtastic_site/presentation/AboutView/AboutView.dart';
 import 'package:devtastic_site/presentation/ContactView/ContactView.dart';
+import 'package:devtastic_site/presentation/FooterView/footer_view.dart';
 import 'package:devtastic_site/presentation/HomeView/HomeView.dart';
 import 'package:devtastic_site/presentation/ServicesView/services_view.dart';
 import 'package:devtastic_site/presentation/TestimonialVew/TestimonialView.dart';
@@ -92,7 +93,7 @@ class _NavBarState extends State<NavBar> {
                             ),
                           ) :
                       Expanded(
-                        flex: 35,
+                        flex: 50,
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: List.generate(navItems.length, (index){
@@ -147,7 +148,8 @@ class _NavBarState extends State<NavBar> {
                     const AboutView(),
                     ServicesView(),
                     const TestimonialView(),
-                    ContactView()
+                    ContactView(),
+                    FooterView()
                   ],
                 ),
               )

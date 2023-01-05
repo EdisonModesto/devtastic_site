@@ -56,6 +56,8 @@ dependencies:
   video_player: ^2.4.10
   web_smooth_scroll: ^1.0.0
   auto_animated: ^3.1.0
+  line_icons: ^2.0.1
+  eva_icons_flutter: ^3.1.0
 
 
 dev_dependencies:
